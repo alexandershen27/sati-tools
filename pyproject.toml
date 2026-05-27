@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sati-tools"
+version = "0.1.1"
+description = "Sati Lab imaging tools"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["antspyx", "nibabel", "dicom2nifti", "templateflow", "numpy"]
+
+[project.scripts]
+sati = "sati_tools.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

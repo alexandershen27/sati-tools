@@ -1,0 +1,21 @@
+# Data 
+data/
+output/
+*.nii
+*.nii.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
