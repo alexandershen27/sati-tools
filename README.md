@@ -20,7 +20,7 @@ Optional flags: `--quiet`, `--output-dir (default output/)`
 
 ### Multiply
 
-Multiply (eg. DeepFlair) checks for alignment, then multiplies:
+Multiply (eg. FLAIR*) checks for alignment, then multiplies:
 
 ```bash
 sati multiply --image1 path/to/image1 \
