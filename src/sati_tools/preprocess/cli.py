@@ -16,6 +16,7 @@ def add_arguments(parser):
     sources.add_argument("--flair", dest="flair_path", help="Path to raw FLAIR image")
 
     config = parser.add_argument_group("Optional configuration")
+    config.add_argument("--n4", action="store_true", help="Apply N4 Bias Field Correction")
     config.add_argument("-o", "--output-dir", default="output", help="Directory for outputs")
 
 
@@ -29,6 +30,10 @@ def run(args):
     if args.t2star_path:
         log.info("Processing T2* image...")
         t2star_raw = get_image(args.t2star_path)
+        
+        if args.n4:
+            t2star_raw = ants.n4_bias_field_correction(t2star_raw)
+
         template = get_template("T2w")
         template_up = ants.resample_image(template, tuple(t2star_raw.spacing), use_voxels=False, interp_type=3)
         t2star_acpc = two_step_alignment(moving_image=t2star_raw, fixed_image=template_up)
@@ -39,6 +44,9 @@ def run(args):
     if args.flair_path:
         log.info("Processing FLAIR image...")
         flair_raw = get_image(args.flair_path)
+
+        if args.n4:
+            flair_raw = ants.n4_bias_field_correction(flair_raw)
 
         if t2star_clean is not None:
             fixed = t2star_clean
@@ -53,6 +61,10 @@ def run(args):
     if args.t1_path:
         log.info("Processing T1 image...")
         t1_raw = get_image(args.t1_path)
+
+        if args.n4:
+            t1_raw = ants.n4_bias_field_correction(t1_raw)
+
         template = get_template("T1w")
         t1_acpc = two_step_alignment(moving_image=t1_raw, fixed_image=template)
 
