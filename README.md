@@ -16,7 +16,7 @@ sati preprocess --t1 path/to/t1 \
                 --flair path/to/flair
 ```
 
-Optional flags: `--quiet`, `--output-dir (default output/)`
+Optional flags: `--quiet`, `--n4`, `--output-dir (default output/)`
 
 ### Multiply
 
